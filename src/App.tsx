@@ -2,7 +2,7 @@ import React from 'react';
 import { ChakraProvider } from "@chakra-ui/react"
 import { Routes } from "./Router"
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <ChakraProvider>
       <Routes />

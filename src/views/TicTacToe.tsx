@@ -1,16 +1,18 @@
 import React from "react";
-import { PLAYER_I, PLAYER_II, WinningPatterns } from "../constants";
+import { Flex, Box, Button, Heading, Text } from "@chakra-ui/react";
 import { Board } from "../components";
+import { PLAYER_I, PLAYER_II, WinningPatterns } from "../constants";
+import { BoardItem } from "../models";
 
-export const TicTacToe = () => {
-  const [currentPlayer, setCurrentPlayer] = React.useState(PLAYER_I);
-  const [turn, setTurn] = React.useState(1);
-  const [isGameOver, setGameStatus] = React.useState(false);
-  const [winner, setWinner] = React.useState(null);
-  const [restartGame, setRestartGame] = React.useState(false);
-  const [isGameDraw, setGameDraw] = React.useState(false);
+export const TicTacToe: React.FC = () => {
+  const [currentPlayer, setCurrentPlayer] = React.useState<string>(PLAYER_I);
+  const [turn, setTurn] = React.useState<number>(1);
+  const [isGameOver, setGameStatus] = React.useState<boolean>(false);
+  const [winner, setWinner] = React.useState<BoardItem | null>(null);
+  const [restartGame, setRestartGame] = React.useState<boolean>(false);
+  const [isGameDraw, setGameDraw] = React.useState<boolean>(false);
 
-  const moveToNextTurn = (board) => {
+  const moveToNextTurn = (board: BoardItem[]) => {
     setCurrentPlayer((previousPlayer) =>
       previousPlayer === PLAYER_I ? PLAYER_II : PLAYER_I
     );
@@ -23,7 +25,7 @@ export const TicTacToe = () => {
     }
   };
 
-  const getWinner = (board) => {
+  const getWinner = (board: BoardItem[]): BoardItem | null => {
     let winner = null;
     for (const pattern of WinningPatterns) {
       const [a, b, c] = pattern;
@@ -39,7 +41,7 @@ export const TicTacToe = () => {
     return winner;
   };
 
-  const handleWinner = (winner) => {
+  const handleWinner = (winner: BoardItem) => {
     setGameStatus(true);
     setWinner(winner);
   };
@@ -60,33 +62,27 @@ export const TicTacToe = () => {
 
   return (
     <React.Fragment>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <h1>Monfernape's Tic Tac Toe</h1>
+      <Flex flexDirection={"column"} alignItems={"center"}>
+        <Heading as={"h1"}>Tic Tac Toe</Heading>
         <Board
           player={currentPlayer}
           nextTurn={moveToNextTurn}
           isGameOver={isGameOver}
           restartGame={restartGame}
         />
-      </div>
+      </Flex>
 
       {winner && (
-        <div>
-          <p>{winner.playedBy} Won. Press Reset To Restart The Game</p>
-          <button onClick={() => resetBoard()}>Reset</button>
-        </div>
+        <Box>
+          <Text>{winner.playedBy} Won. Press Reset To Restart The Game</Text>
+          <Button onClick={() => resetBoard()}>Reset</Button>
+        </Box>
       )}
       {isGameDraw && (
-        <div>
-          <p>Game end up in draw. Press Reset To Restart The Game</p>
-          <button onClick={() => resetBoard()}>Reset</button>
-        </div>
+        <Box>
+          <Text>Game end up in draw. Press Reset To Restart The Game</Text>
+          <Button onClick={() => resetBoard()}>Reset</Button>
+        </Box>
       )}
     </React.Fragment>
   );

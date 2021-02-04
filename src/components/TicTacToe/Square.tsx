@@ -1,15 +1,15 @@
 import React from 'react'
+import { BoardItem } from "../../models"
+import { Button } from "@chakra-ui/react"
+interface IProps {
+  mark: BoardItem;
+  handleClick: (item: BoardItem) => void
+}
 
-export const Square = ({ mark, handleClick }) => (
-    <button
-      style={{
-        width: 100,
-        height: 100,
-        fontWeight: "bold",
-        fontSize: 30
-      }}
+export const Square: React.FC<IProps> = ({ mark, handleClick }) => (
+    <Button variant={"solid"} size={"lg"} colorScheme={"teal"} width={["33%"]}
       onClick={() => !mark.signature && handleClick(mark)}
     >
       {mark.signature}
-    </button>
+    </Button>
   );

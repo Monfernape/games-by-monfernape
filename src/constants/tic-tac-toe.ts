@@ -1,7 +1,9 @@
+import { BoardItem } from "../models"
+
 export const PLAYER_I = "Player I";
 export const PLAYER_II = "Player II";
 
-export const WinningPatterns = [
+export const WinningPatterns: number[][] = [
   [0, 1, 2],
   [3, 4, 5],
   [6, 7, 8],
@@ -12,7 +14,7 @@ export const WinningPatterns = [
   [2, 4, 6]
 ];
 
-export const BoardSettings = [
+export const BoardSettings: BoardItem[] = [
   {
     index: 1,
     playedBy: null,
