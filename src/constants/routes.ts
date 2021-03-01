@@ -1,4 +1,4 @@
-import { Home, TicTacToe } from "../views";
+import { Home, TicTacToe, Hangman } from "../views";
 
 export const routes = [
   {
@@ -11,6 +11,11 @@ export const routes = [
     component: TicTacToe,
     exact: true,
   },
+  {
+    path: "/hangman",
+    component: Hangman,
+    exact: true,
+  },
 ];
 
 export const links = [
@@ -21,5 +26,9 @@ export const links = [
   {
     path: "/tic-tac-toe",
     label: "Tic Tac Toe",
+  },
+  {
+    path: "/hangman",
+    label: "Hangman",
   },
 ];
