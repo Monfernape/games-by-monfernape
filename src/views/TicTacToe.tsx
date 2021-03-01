@@ -61,29 +61,30 @@ export const TicTacToe: React.FC = () => {
   };
 
   return (
-    <React.Fragment>
-      <Flex flexDirection={"column"} alignItems={"center"}>
-        <Heading as={"h1"}>Tic Tac Toe</Heading>
-        <Board
-          player={currentPlayer}
-          nextTurn={moveToNextTurn}
-          isGameOver={isGameOver}
-          restartGame={restartGame}
-        />
-      </Flex>
-
+    <Flex flexDirection={"column"} alignItems={"center"}>
+      <Heading as={"h1"}>Tic Tac Toe</Heading>
+      <Board
+        player={currentPlayer}
+        nextTurn={moveToNextTurn}
+        isGameOver={isGameOver}
+        restartGame={restartGame}
+      />
       {winner && (
         <Box>
           <Text>{winner.playedBy} Won. Press Reset To Restart The Game</Text>
-          <Button onClick={() => resetBoard()}>Reset</Button>
+          <Flex justifyContent={"center"} alignItems={"center"}>
+            <Button onClick={() => resetBoard()}>Reset</Button>
+          </Flex>
         </Box>
       )}
       {isGameDraw && (
         <Box>
           <Text>Game end up in draw. Press Reset To Restart The Game</Text>
-          <Button onClick={() => resetBoard()}>Reset</Button>
+          <Flex justifyContent={"center"} alignItems={"center"}>
+            <Button onClick={() => resetBoard()}>Reset</Button>
+          </Flex>
         </Box>
       )}
-    </React.Fragment>
+    </Flex>
   );
 };
