@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import {
   Flex,
@@ -11,6 +12,7 @@ import {
 import { StarIcon } from "@chakra-ui/icons";
 import { Letter, IRandomWord, IGameWord } from "../../models";
 import { getRandomWord } from "../../services";
+import { DEFAULT_NUMBER_OF_TRIES } from "../../constants"
 
 interface IProps {
   usedLetters: Letter[];
@@ -27,7 +29,7 @@ export const AnswerBox: React.FC<IProps> = ({
 }) => {
   const [word, setWord] = React.useState<IGameWord[]>([]);
   const [randomWord, setRandomWord] = React.useState<IRandomWord | null>(null);
-  const [remainingTries, setRemainingTries] = React.useState<number>(5);
+  const [remainingTries, setRemainingTries] = React.useState<number>(DEFAULT_NUMBER_OF_TRIES);
 
   /**
    * Restarts the game and fetches a new word
@@ -58,7 +60,7 @@ export const AnswerBox: React.FC<IProps> = ({
     );
 
     setRemainingTries(
-      5 - usedLetters.filter((u) => !word.some((w) => w.letter === u)).length
+      DEFAULT_NUMBER_OF_TRIES - usedLetters.filter((u) => !word.some((w) => w.letter === u)).length
     );
   }, [usedLetters]);
 
