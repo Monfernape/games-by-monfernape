@@ -35,7 +35,8 @@ export const AnswerBox: React.FC<IProps> = ({
    * Restarts the game and fetches a new word
    */
   React.useEffect(() => {
-    setRemainingTries(5);
+    setWord([])
+    setRemainingTries(DEFAULT_NUMBER_OF_TRIES);
     setRandomWord(null)
     getWord();
   }, [restartGame])
@@ -77,7 +78,7 @@ export const AnswerBox: React.FC<IProps> = ({
   }, [remainingTries]);
 
   React.useEffect(() => {
-    if(word.length && word.every(x => x.guessed)) onGameWinning()
+    if(remainingTries > 0 && word.length && word.every(x => x.guessed === true)) onGameWinning()
   }, [word])
 
   const getWord = () => {
